@@ -1,30 +1,43 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Home from '../views/Home.vue';
+import PrizeClaw from '../views/PrizeClaw.vue';
+import TwistingEgg from '../views/TwistingEgg.vue';
+import SlotMachine from '../views/SlotMachine.vue';
+import RedpocketRain from '../views/RedpocketRain/index.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
-    component: Home,
+    path: '/',
+    name: 'Home',
+    component: Home
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: '/PrizeClaw',
+    name: 'PrizeClaw',
+    component: PrizeClaw
   },
+  {
+    path: '/TwistingEgg',
+    name: 'TwistingEgg',
+    component: TwistingEgg
+  },
+  {
+    path: '/SlotMachine',
+    name: 'SlotMachine',
+    component: SlotMachine
+  },
+  {
+    path: '/RedpocketRain',
+    name: 'RedpocketRain',
+    component: RedpocketRain
+  }
 ];
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

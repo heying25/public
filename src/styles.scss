@@ -1,0 +1,21 @@
+#app {
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  user-select: none; //禁用长按复制
+  position: relative;
+}
+//设置全局样式
+html {
+  background: #ffffff;
+  scroll-behavior: smooth; // 平滑滚动
+  -webkit-overflow-scrolling: touch; // 苹果的弹性滚动
+  touch-action: manipulation; // 解决移动端 click 延时的问题
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
