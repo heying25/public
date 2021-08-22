@@ -20,8 +20,11 @@
 <script>
 import anime from 'animejs';
 import randomInt from '@/rpf/randomInt';
-import vpx from '@/rpf/vpx';
-const sliceHeightPx = vpx(162);
+import vw from '@/rpf/vw';
+
+const winW = window.innerWidth;
+const vwInPx = x => parseFloat(vw(x, 750, false)) * (winW / 100);
+const sliceHeightPx = vwInPx(636 / 4);
 export default {
   name: 'SlotMachine',
   data() {
@@ -38,6 +41,7 @@ export default {
       this.playLottery(randomInt(1, 4), randomInt(1, 4), randomInt(1, 4));
     },
     playLottery(n1, n2, n3) {
+      console.log('n1', n1, 'n2', n2, 'n3', n3);
       const tl = anime.timeline({
         easing: 'easeInOutCubic',
         duration: 5000,
@@ -104,14 +108,15 @@ export default {
   top: vw(100);
   left: vw(110);
   overflow: hidden;
-  border: 1px solid red;
 }
 .slot-machine-col {
   position: absolute;
   top: vw(10);
   left: vw(12);
   background-image: url('~@/assets/SlotMachine/prizes.png');
-  background-size: 100%;
+  background-size: 100% vw(636);
+  width: vw(142);
+  height: vw(636/4);
   background-repeat: repeat-y;
   background-position: 0 0;
 }

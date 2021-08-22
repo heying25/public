@@ -24,7 +24,12 @@
             opacity: ing ? 0.5 : 1
           }"
         ></div>
-        <div :class="{ prize: true, anim: showPrize }"></div>
+        <div
+          :class="{ prize: true, anim: showPrize }"
+          :style="{
+            backgroundImage: `url(${prizeImg})`
+          }"
+        ></div>
       </div>
     </div>
   </div>
@@ -122,6 +127,15 @@ export default {
           }
         };
       });
+    },
+    prizeImg() {
+      let src;
+      if (this.prizeRes) {
+        src = require(`@/assets/TwistingEgg/prize_${this.prizeRes}.png`);
+      } else {
+        src = require(`@/assets/TwistingEgg/prize_1.png`);
+      }
+      return src;
     }
   },
   mounted() {
@@ -137,11 +151,12 @@ export default {
       return vpx(val);
     },
     _drawLottery() {
+      if (this.ing) {
+        return;
+      }
       this.ing = true;
       this.prizeRes = null;
       this.showPrize = false;
-      //模拟中奖结果
-      this.prizeRes = Math.round(Math.random());
       this._ballAnim();
     },
     _ballAnim() {
@@ -176,15 +191,13 @@ export default {
         }).finished;
       });
       Promise.all(animProm).then(() => {
+        this.prizeRes = randomInt(0, 5);
+        console.log('中奖结果', this.prizeRes);
         if (!this.prizeRes) {
           this._ballAnim();
         } else {
           this.showPrize = true;
           this.ing = false;
-          this.restart = setTimeout(() => {
-            this.showPrize = false;
-            clearTimeout(this.restart);
-          }, 1000);
         }
       });
     }
@@ -302,7 +315,7 @@ $radius: 290;
   left: vw(420);
   z-index: 9;
   visibility: hidden;
-  background-image: url('~@/assets/TwistingEgg/prize_3.png');
+  // background-image: url('~@/assets/TwistingEgg/prize_3.png');
   &.anim {
     visibility: visible;
     animation: prizeAnim 1s ease both;

@@ -47,7 +47,7 @@
         }"
         @click="_action"
       >
-      <div class="btn-pattern"></div>
+        <div class="btn-pattern"></div>
       </div>
       <div class="joystick-holder">
         <div class="joystick-per">
@@ -70,10 +70,6 @@
         <span>触摸控制器</span>
         <div class="ctrl-dot" ref="dot"></div>
       </div>
-
-      <button class="debug-btn" @click="debug = !debug">
-        {{ debug ? '隐藏控制器' : '显示控制器' }}
-      </button>
     </div>
   </div>
 </template>
@@ -233,7 +229,7 @@ export default {
           this.dropTw.cancel();
           this.catching = false;
           this.ing = false;
-          console.log(333)
+          console.log(333);
         }
       });
       // this.catching = false;
@@ -254,6 +250,7 @@ $maxPosAbs: 100;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: #6332c8;
 }
 
 .machine-bg {
